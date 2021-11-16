@@ -1,24 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useGetPosts } from './lib/api-hooks';
+import { FetchState } from './types';
 import './App.css';
 
 function App() {
+  const [posts, fetchState, getPosts] = useGetPosts();
+  const btnOnClick = () => getPosts();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>React TypeScript API hooks</h1>
+      {fetchState === FetchState.DEFAULT && (
+        <>
+          <p>
+            Hello there, click the button below to get the list of posts from
+            the API.
+          </p>
+          <button onClick={btnOnClick}>Get Posts</button>
+        </>
+      )}
+      {fetchState === FetchState.LOADING && <p>Fetching posts...</p>}
+      {fetchState === FetchState.ERROR && (
+        <>
+          <p>Oops! Something went wrong. Please try again.</p>
+          <button onClick={btnOnClick}>Get Posts</button>
+        </>
+      )}
+      {fetchState === FetchState.SUCCESS && (
+        <>
+          <p>Here's the list of posts:</p>
+          <ul className="posts-list">
+            {posts.map((post) => (
+              <li key={post.id} className="post">
+                <h3>
+                  {post.id} - {post.title}
+                </h3>
+                <p>{post.body}</p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
