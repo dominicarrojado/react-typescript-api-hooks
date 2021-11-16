@@ -52,7 +52,7 @@ describe('<App />', () => {
     expect(stateEl).toBeInTheDocument();
   });
 
-  it('should render success state on success', async () => {
+  it('should render success state on success', () => {
     const fetchState = FetchState.SUCCESS;
     const posts = [
       {
