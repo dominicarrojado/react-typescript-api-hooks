@@ -40,6 +40,11 @@ function App() {
           </ul>
         </>
       )}
+      <footer className="footer">
+        <a href="https://dominicarrojado.com/posts/how-to-integrate-with-a-rest-api-using-react-hooks-and-typescript-with-tests/">
+          Learn how to do this REST API integration in React and TypeScript
+        </a>
+      </footer>
     </div>
   );
 }

@@ -24,3 +24,16 @@
 .post p {
   color: #777;
 }
+
+.footer {
+  padding: 60px 0 30px;
+}
+
+.footer a {
+  color: #555555;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #000000;
+}
